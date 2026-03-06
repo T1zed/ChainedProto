@@ -15,17 +15,20 @@ public class BallBehavior : MonoBehaviour
 
     void Update() { }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("sword"))
+        Debug.Log("Collision avec : " + other.gameObject.name + " | tag : " + other.gameObject.tag);
+        if (other.gameObject.CompareTag("Bumper"))
         {
-            SwordDirection sd = other.GetComponent<SwordDirection>();
-
-            if (sd != null)
+            Bumper bumper = other.gameObject.GetComponent<Bumper>();
+            if (bumper != null)
             {
-                Debug.Log("test");
+                float rad = bumper.angle * Mathf.Deg2Rad;
+                Vector3 bumperDir = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f);
+
                 rb.linearVelocity = Vector3.zero;
-                rb.AddForce(sd.hitDirection * hitForce, ForceMode.Impulse);
+                rb.AddForce(bumperDir * bumper.force, ForceMode.Impulse);
+                Debug.Log("Ball hit Bumper");
             }
         }
     }

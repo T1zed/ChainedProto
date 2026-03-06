@@ -85,7 +85,6 @@ public class playerTest : MonoBehaviour
             return;
 
         lastImpTime = Time.time;
-        Debug.Log("impulse");
 
         Vector2 moveInput = pInput.Player.Move.ReadValue<Vector2>();
 
@@ -209,11 +208,5 @@ public class playerTest : MonoBehaviour
         }
     }
 
-    //IEnumerator slowmo()
-    //{
-    //    Time.timeScale = (0.1f);
-    //    yield return new WaitForSeconds(0.1f);
-    //    Time.timeScale = 1f;
 
-    //}
 }
